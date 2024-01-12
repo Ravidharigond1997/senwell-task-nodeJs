@@ -1,4 +1,5 @@
 import Admission from "../module/admission.js";
+import Progress from "../module/progress.js";
 
 export const createProgress = async (req, res) => {
   try {
@@ -75,5 +76,43 @@ export const createAdmission = async (req, res) => {
       success: false,
       message: err.message,
     });
+  }
+};
+
+export const deleteProgressData = async (req, res) => {
+  try {
+    const rollNo = req.params.rollNo;
+
+    const progressData = await Progress.findOneAndDelete({ rollNo: rollNo });
+
+    if (!progressData) {
+      return res.status(404).json({ error: "student data not found" });
+    }
+
+    res.status(201).send({
+      success: true,
+      message: "ProgressData deleted successfully",
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const deleteAdmissionData = async (req, res) => {
+  try {
+    const rollNo = req.params.rollNo;
+
+    const admissionData = await Admission.findOneAndDelete({ rollNo: rollNo });
+
+    if (!admissionData) {
+      return res.status(404).json({ error: "student data not found" });
+    }
+
+    res.status(201).send({
+      success: true,
+      message: "ProgressData deleted successfully",
+    });
+  } catch (err) {
+    console.log(err);
   }
 };
