@@ -9,12 +9,12 @@ export const getProgress = async (req, res) => {
     const progressData = await Progress.findOne({ rollNo: rollNo });
 
     if (!progressData) {
-      return res.status(404).json({ error: "User not found" });
+      return res.status(404).json({ error: "student data not found" });
     }
 
     res.status(201).send({
       success: true,
-      message: "Progress create succefully",
+      message: "ProgressData send successfully",
       progressData,
     });
   } catch (err) {
@@ -24,18 +24,18 @@ export const getProgress = async (req, res) => {
 
 export const getAdmissionData = async (req, res) => {
   try {
-    const id = req.params.progressId;
+    const rollNo = req.params.rollNo;
 
-    const progressData = await Adi;
+    const admissionData = await Admission.findOne({ rollNo: rollNo });
 
-    if (!progressData) {
-      return res.status(404).json({ error: "User not found" });
+    if (!admissionData) {
+      return res.status(404).json({ error: "student data not found" });
     }
 
     res.status(201).send({
       success: true,
-      message: "Progress create succefully",
-      progressData,
+      message: "Adimission Data send successfully",
+      admissionData,
     });
   } catch (err) {
     console.log(err);

@@ -45,7 +45,6 @@ export const protect = asyncHandler(async (req, res, next) => {
 });
 
 export const verfiyUser = async (req, res, next) => {
-  console.log("hello user");
   try {
     let token;
 
