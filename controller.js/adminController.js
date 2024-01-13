@@ -79,6 +79,42 @@ export const createAdmission = async (req, res) => {
   }
 };
 
+export const getAdmissionData = async (req, res) => {
+  try {
+    const admissionData = await Admission.find();
+
+    if (!admissionData) {
+      return res.status(404).json({ error: "student data not found" });
+    }
+
+    res.status(201).send({
+      success: true,
+      message: "Adimission Data  successfully",
+      admissionData,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getProgressData = async (req, res) => {
+  try {
+    const admissionData = await Progress.find();
+
+    if (!admissionData) {
+      return res.status(404).json({ error: "student data not found" });
+    }
+
+    res.status(201).send({
+      success: true,
+      message: "Progress Data  successfully",
+      admissionData,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export const deleteProgressData = async (req, res) => {
   try {
     const rollNo = req.params.rollNo;
